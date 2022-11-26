@@ -1,0 +1,146 @@
+
+
+
+
+
+
+
+
+ <div class="jumbotron">
+  <div class="container" >
+    <div class="p-3 mb-2 bg-secondary text-black" [ngStyle]="{'border-radius':'15px'}">
+    <h1 class="display-3">Interest Rate Calculator!</h1>
+    <p>A website using <a href="https://www.angular.io" [ngStyle]="{'color':'white'}"><b>Angular</b></a> in the front-end end and <a href="https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps" [ngStyle]="{'color':'white'}"> <b>C# WebApi</b> </a> in the back-end. The form below will help you calcuate your amorization rates.</p>
+    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+<div class="container">
+  <!-- Example row of columns -->
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Goal</h2>
+      <p>For this website my goal is to create a amorization calculator that allows the user to calculate how much money they owe per month, the amount paid toward principle and the amount paid toward interest. <br>
+        Please visit <a href="https://www.investopedia.com/terms/a/amortization.asp">Investopedia</a> for more information! </p>
+
+    </div>
+    <div class="col-md-4">
+      <h2>Equation</h2>
+      <h5>
+        <div [mathjax]="equation"></div>
+    </h5>
+    <i><b>where:</b></i><br>
+    i=Monthly interest payment<br>
+    n=Number of payments<br>
+​
+ 
+    </div>
+    <div class="col-md-4">
+      <h2>Example Problem </h2>
+      <h2> </h2>
+      You’ll need to divide your annual interest rate by 12. For example, if your annual 
+      interest rate is 3%, then your monthly interest rate will be 0.25% (0.03 annual interest rate ÷ 12 months).
+      You'll also multiply the number of years in your loan term by 12. 
+      For example, a four-year car loan would have 48 payments (four years × 12 months).
+
+    </div>
+  </div>
+
+  <hr>
+
+</div> <!-- /container -->
+
+
+<div class="container"><div class="p-3 mb-2 bg-secondary text-black" [ngStyle]="{'border-radius':'15px'}">
+  <div class="row">
+<form [formGroup]="Loans" (ngSubmit)="onCalculate()">
+  <div class="row">
+    <div class="col">
+      <label for="amount">Amount</label>
+      <input type="text" formControlName="amount" class="form-control" placeholder="Loan Amount">
+    </div>
+    <div class="col">
+      <label for="rate">Interest Rate %</label>
+      <input type="text" class="form-control" formControlName="rate" placeholder="Interest Rate">
+    
+    
+      <div *ngIf="rate?.invalid && (rate?.dirty || rate?.touched)"
+      class="alert alert-danger">
+      
+      <div *ngIf="rate?.errors?.['pattern']">
+        Please type in a decimal
+      </div>
+  
+    
+     </div>
+  
+    </div>
+    <div class="col">
+      <label for="time"># of Months</label>
+      <input type="text" class="form-control" formControlName="time" placeholder="Months">
+    </div>
+  </div>
+  <p class="lead">
+  
+  <button type="submit" class="btn btn-primary btn-lg" [ngStyle]="{'margin-top':'20px'}">Calculate</button>  </p>
+</form>
+  </div>
+  <hr>
+</div>
+</div>
+
+
+
+
+
+
+
+<div class="container">
+    <div class="row">
+<table class="table" *ngIf="showtable">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col"># Months</th>
+      <th scope="col">Monthy Payments</th>
+      <th scope="col">Computed Interest Due</th>
+      <th scope="col">Principl Due </th>
+      <th scope="col">Principl Balance Left</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td>  </td>
+      <td>  </td>
+      <td>  </td> 
+      <td> {{this.Loans.value.amount | currency }} </td>
+    </tr>
+ 
+    <tr *ngFor="let c of ultimate_array" >
+      <th scope="row">{{c.id+1}}</th>
+      <td>{{c.monthly_payment | currency}}</td>
+      <td>{{c.interest | currency}}</td>
+      <td>{{c.principle_payed | currency}}</td>
+      <td>{{c.principle | currency }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Total</th>
+      <td> {{total_principle | currency }} </td>
+      <td> <b> {{total_Interest | currency}} </b></td>
+      <td>   {{total_principle_due | currency }}  </td> 
+      <td> ---- </td>
+    </tr>
+ 
+
+  </tbody>
+</table>
+
+</div>
+
+</div>

@@ -1,0 +1,72 @@
+
+ <div class="jumbotron">
+  <div class="container" >
+    <div class="p-3 mb-2 bg-secondary text-black" [ngStyle]="{'border-radius':'15px'}">
+    <h1 class="display-3">Questions</h1>
+    <p>If you have any questions or comments please let us know below.</p>
+    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+  </div>
+</div>
+</div>
+
+
+<div class="container">
+
+<div class="row justify-content-lg-center">
+  <div class="col-5">
+<form [formGroup]="FormInfo" (ngSubmit)="onSubmit()" > 
+    <div class="form-group">
+      <label for="names">Name</label>
+      <input type="names" class="form-control" formControlName="name" id="name" placeholder="Enter name">
+
+    </div>
+    <div class="form-group">
+      <label for="topics">Question</label>
+      <input type="topics" class="form-control" formControlName="topic" id="topic" placeholder="Enter Question">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  </div>
+
+
+
+</div>
+</div>
+
+
+<hr>
+
+
+
+<h3 class="row justify-content-lg-center">In the future add backend here</h3>
+
+<!--
+
+<div class="container">
+    <div class="row justify-content-lg-center">
+        <div class="col-12 col-md-8">
+<table class="table table-info">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Question</th>
+        <th scope="col">Date Posted</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of Students">
+        <th scope="row">{{student.id}}</th>
+        <td>{{student.name}}</td>
+        <td>{{student.topic}}</td>
+        <td>unkown right now</td>
+      </tr>
+  
+    </tbody>
+  </table>
+  
+  </div>
+</div>
+</div>
+
+-->
